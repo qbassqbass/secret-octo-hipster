@@ -91,7 +91,7 @@ public class ReportData implements Serializable{
     }
     @Override
     public String toString(){
-        return ""+getId()+":"+getTimestamp()+":"+getUserId()+":"+getType()+":"+getObjectId();
+        return ""+getId()+"|"+getTimestamp()+"|"+getUserId()+"|"+getType()+"|"+getObjectId();
     }
     
     public boolean saveReport(String filename){

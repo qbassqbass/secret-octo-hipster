@@ -55,8 +55,9 @@ public class DBTester {
         rd.setTimestamp(new java.sql.Timestamp((new java.util.Date()).getTime()));
         rd.setUserId(1);
 //        connector.save(rd);
-        for(ReportData r: (ArrayList<ReportData>)connector.parser.load(connector.getConnection(), "ReportData")){
-            
+        for(Object r: connector.parser.load(connector.getConnection(), "ReportData")){
+            ReportData rx = (ReportData)r;
+            System.out.println(rx);
         }
         
         
