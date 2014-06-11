@@ -168,7 +168,7 @@ public class BeanManager {
         return res;
     }
     
-    public List<Integer> getResSeats(){
+    public List<Integer> getResSeats(int id){
         List<Integer> list = new ArrayList<Integer>();
         for (Res r: this.getRes())
             if(id == r.getShowid())
