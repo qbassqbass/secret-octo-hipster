@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>PrimeFaces</title>
+            </f:facet>
+        </h:head>
+
+        <h:body>
+            <h:form id="menu" >
+                <p:stack icon="/icon/stack.png" expanded="true">
+                    <c:if test="#{user.UType == 2}">    
+                        <p:menuitem value="Raporty" icon="/icon/raporty.png" url="raporty.xhtml" />
+                        <p:menuitem value="Panel Administracyjny" icon="/icon/paneladm.png" url="panel.xhtml" />
+                    </c:if>    
+
+                <p:menuitem value="Produkty" icon="/icon/produkty.png" url="produkty.xhtml"/>
+                <p:menuitem value="Atrakcje" icon="/icon/atrakcje.png" url="atrakcje.xhtml"/>
+                <p:menuitem value="Rezerwacje" icon="/icon/rezerwacja.png" url="rezerwacje.xhtml"/>
+                <p:menuitem value="Sale" icon="/icon/sale.png" url="sale.xhtml"/>
+                
+                         
+              </p:stack>  
+            </h:form>
+            <p:layout fullPage="true">
+
+                <p:layoutUnit position="north" size="230" resizable="false" closable="false" collapsible="true">
+                    Header
+                </p:layoutUnit>
+
+       
+                <p:layoutUnit position="center" style="text-align: center">
+                    <h:form id="formatka">
+                        <p:dataTable id="tabela" var="res" value="#{beanManager.res}">
+                            <p:column headerText="Numer rezerwacji">
+                                <h:outputText value="#{res.id}"/>
+                            </p:column>
+                            <p:column headerText="Imie i nazwisko" >
+                                <h:outputText value="#{res.name}"/>
+                            </p:column>
+                            <p:column headerText="Film" >
+                                <h:outputText value="#{sprawdzaczTytulow.sprawdzTytul(res.showID)}"/>
+                            </p:column>
+                            <p:column headerText="Film" >
+                                <h:outputText value="#{sprawdzaczTytulow.sprawdzDate(res.showID)}"/>
+                            </p:column>
+                             
+                        </p:dataTable>
+                        <p:commandButton value="Eksportuj pdf" ajax="false">
+                                <p:dataExporter type="pdf" target="tabela" fileName="rezerwacje" />
+                        </p:commandButton>
+                        <p:commandButton value="Eksportuj xls" ajax="false">
+                            <p:dataExporter type="xls" target="tabela" fileName="rezerwacje" />
+                        </p:commandButton>
+                    </h:form>
+                </p:layoutUnit>
+
+            </p:layout>
+
+        </h:body>
+
+    </f:view>
+</html>
+

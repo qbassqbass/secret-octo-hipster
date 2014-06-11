@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2"
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+    <managed-bean>
+        <managed-bean-name>beanManager</managed-bean-name>
+        <managed-bean-class>kinomaniak.controllers.BeanManager</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>  
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>user</managed-bean-name>
+        <managed-bean-class>kinomaniak.beans.User</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <navigation-rule>
+        <from-view-id>/primefaces/index.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{user.checkUser(beanManager.users)}</from-action>
+            <from-outcome>OK</from-outcome>
+            <to-view-id>/primefaces/glowne.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{user.checkUser(beanManager.users)}</from-action>
+            <from-outcome>ERR</from-outcome>
+            <to-view-id>/primefaces/index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <managed-bean>
+        <managed-bean-name>passwordView</managed-bean-name>
+        <managed-bean-class>kinomaniak.mprimef.PasswordView</managed-bean-class>
+    
+        <managed-bean-scope>request</managed-bean-scope></managed-bean>
+    <managed-bean>
+        <managed-bean-name>powitanie</managed-bean-name>
+        <managed-bean-class>kinomaniak.mprimef.Powitanie</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>attractionView</managed-bean-name>
+        <managed-bean-class>kinomaniak.mprimef.AttractionView</managed-bean-class>
+    
+        <managed-bean-scope>request</managed-bean-scope></managed-bean>
+    <managed-bean>
+        <managed-bean-name>attractionKomunikat</managed-bean-name>
+        <managed-bean-class>kinomaniak.mprimef.AttractionKomunikat</managed-bean-class>
+    
+        <managed-bean-scope>request</managed-bean-scope></managed-bean>
+    <managed-bean>
+        <managed-bean-name>sprawdzaczTytulow</managed-bean-name>
+        <managed-bean-class>kinomaniak.mprimef.SprawdzaczTytulow</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property> 
+            <property-name>beanManager</property-name>
+            <value>#{beanManager}</value>
+        </managed-property>
+    </managed-bean>
+ 
+    
+</faces-config>

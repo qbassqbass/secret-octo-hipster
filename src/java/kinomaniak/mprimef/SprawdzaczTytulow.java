@@ -1,0 +1,45 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package kinomaniak.mprimef;
+
+import kinomaniak.beans.Movie;
+import kinomaniak.beans.Show;
+import kinomaniak.controllers.BeanManager;
+
+/**
+ *
+ * @author Adam
+ */
+public class SprawdzaczTytulow {
+
+    public BeanManager getBeanManager() {
+        return beanManager;
+    }
+
+    public void setBeanManager(BeanManager beanManager) {
+        this.beanManager = beanManager;
+    }
+    private BeanManager beanManager;
+    /**
+     * Creates a new instance of SprawdzaczTytulow
+     */
+    public String sprawdzTytul(int id){
+        for (Show s: this.getBeanManager().getShows())
+            if(id == s.getID())
+                return s.getMov().getName();
+        return null;
+    }
+    public String sprawdzDate(int id){
+        for (Show s: this.getBeanManager().getShows())
+            if(id == s.getID())
+                return s.getFormatted();
+        return null;
+    }
+    public SprawdzaczTytulow() {
+    }
+    
+}
