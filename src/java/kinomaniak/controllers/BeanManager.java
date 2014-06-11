@@ -8,6 +8,7 @@ package kinomaniak.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.bean.ManagedProperty;
 import kinomaniak.beans.*;
 import kinomaniak.database.DBConnector;
 
@@ -18,6 +19,16 @@ import kinomaniak.database.DBConnector;
 
 public class BeanManager {
     DBConnector db;
+    @ManagedProperty("#{user}")
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
     ArrayList<Movie> movies = new ArrayList<Movie>();
     ArrayList<Attraction> attractions = new ArrayList<Attraction>();
     ArrayList<Product> products = new ArrayList<Product>();
@@ -69,12 +80,24 @@ public class BeanManager {
         pr.buy();
 //        System.out.println(pr.getCount());
         db.update(pr);
+        this.saveReport(1, id); // 1 - Product
+        
     }
     
     public void buyAttraction(int id){
         Attraction at = (Attraction)db.parser.load(db.getConnection(), "Attraction", id).get(0);
         System.out.println("AttrID: "+id);
+        this.saveReport(0, id); // 0 - Attraction
         
+    }
+    
+    private void saveReport(int type, int oid){
+        ReportData rd = new ReportData();
+        rd.setObjectId(oid);
+        rd.setType(type); // 0 - Atraction
+        rd.setTimestamp(new java.sql.Timestamp((new java.util.Date()).getTime()));
+        rd.setUserId(user.getId());
+        db.save(rd);
     }
     
     public void getReservation(int id, int uid){
