@@ -71,29 +71,39 @@ public class BeanManager {
         db.update(pr);
     }
     
+    public void buyAttraction(int id){
+        Attraction at = (Attraction)db.parser.load(db.getConnection(), "Attraction", id).get(0);
+        System.out.println("AttrID: "+id);
+        
+    }
+    
     public void getReservation(int id, int uid){
         
     }
     
     public ArrayList<Movie> getMovies(){
-//        ArrayList<Movie> arr = new ArrayList<Movie>();
-        ArrayList<Object> a;
-        if(id == -1){
-            a = db.parser.load(db.getConnection(), "Movie");
-        }else{
-            a = db.parser.load(db.getConnection(), "Movie", id);
+        if(this.movies.isEmpty()){
+    //        ArrayList<Movie> arr = new ArrayList<Movie>();
+            ArrayList<Object> a;
+            if(id == -1){
+                a = db.parser.load(db.getConnection(), "Movie");
+            }else{
+                a = db.parser.load(db.getConnection(), "Movie", id);
+            }
+            for(Object obj : a){
+    //            arr.add((Movie)obj);
+                this.movies.add((Movie)obj);
+            }        
         }
-        for(Object obj : a){
-//            arr.add((Movie)obj);
-            this.movies.add((Movie)obj);
-        }        
         return this.movies;
     }
     
     public ArrayList<Attraction> getAttractions() {
-        ArrayList<Object> a;
-        for(Object obj : a = (id == -1) ? db.parser.load(db.getConnection(), "Attraction") : db.parser.load(db.getConnection(), "Attraction", id)){
-            attractions.add((Attraction)obj);
+        if(this.attractions.isEmpty()){
+            ArrayList<Object> a;
+            for(Object obj : a = (id == -1) ? db.parser.load(db.getConnection(), "Attraction") : db.parser.load(db.getConnection(), "Attraction", id)){
+                attractions.add((Attraction)obj);
+            }
         }
         return attractions;
     }
@@ -108,9 +118,11 @@ public class BeanManager {
 //    }
     
     public ArrayList<CRoom> getRooms(){
-        ArrayList<Object> a;
-        for(Object obj : a = (id == -1) ? db.parser.load(db.getConnection(), "CRoom") : db.parser.load(db.getConnection(), "CRoom", id)){
-            rooms.add((CRoom)obj);
+        if(this.rooms.isEmpty()){
+            ArrayList<Object> a;
+            for(Object obj : a = (id == -1) ? db.parser.load(db.getConnection(), "CRoom") : db.parser.load(db.getConnection(), "CRoom", id)){
+                rooms.add((CRoom)obj);
+            }
         }
         return rooms;
     }

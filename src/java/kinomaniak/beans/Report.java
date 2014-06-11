@@ -7,6 +7,7 @@
 package kinomaniak.beans;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  *
@@ -26,7 +27,7 @@ public class Report implements Serializable{
         this.type = type;
     }
 
-    public void setRange(kinomaniak.beans.Time[] range) {
+    public void setRange(Date[] range) {
         this.range = range;
     }
 
@@ -46,7 +47,7 @@ public class Report implements Serializable{
         return type;
     }
 
-    public kinomaniak.beans.Time[] getRange() {
+    public Date[] getRange() {
         return range;
     }
 
@@ -61,16 +62,16 @@ public class Report implements Serializable{
     public Report() {
     }
     private int type;
-    private Time[] range = new Time[2];
+    private Date[] range = new Date[2];
     private int attractionId;
     private int userId;
     
-    public Report(Time[] range){
+    public Report(Date[] range){
         this.range = range;
         this.attractionId = -1;
         this.userId = -1;
     }
-    public Report(Time[] range, element el, int id){
+    public Report(Date[] range, element el, int id){
         this.range = range;
         if(el == element.ATTRID){            
             this.attractionId = id;

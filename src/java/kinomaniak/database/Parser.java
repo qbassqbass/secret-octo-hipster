@@ -174,6 +174,16 @@ public class Parser {
                         arr.add(obj);
                     }
                     break;
+                case "ReportData":
+                    while(result.next()){
+                        ReportData rd = new ReportData();
+                        rd.setId(result.getInt("id"));
+                        rd.setObjectId(result.getInt("reference"));
+                        rd.setType(result.getInt("type"));
+                        rd.setUserId(result.getInt("userId"));
+                        rd.setTimestamp(result.getTimestamp("timestamp"));
+                        arr.add(rd);
+                    }
                 default:                    
 //                    cannot do anything... -.-
             }
@@ -228,6 +238,10 @@ public class Parser {
         }else if(obj instanceof GoldCard){
             GoldCard gc = (GoldCard) obj;
             
+        }else if(obj instanceof ReportData){
+            ReportData rd = (ReportData) obj;
+//            query = "UPDATE ReportData SET "
+            //Reports are Read-Only
         }
         return query;
     }
@@ -267,6 +281,9 @@ public class Parser {
         }else if(obj instanceof GoldCard){
             GoldCard gc = (GoldCard) obj;
             
+        }else if(obj instanceof ReportData){
+            ReportData rd = (ReportData) obj;
+            query = "INSERT INTO ReportData VALUES (NULL, '"+rd.getUserId()+"', '"+rd.getType()+"', '"+rd.getTimestamp()+"', '"+rd.getObjectId()+"');";
         }
         return query;
     }
@@ -313,6 +330,9 @@ public class Parser {
                 break;
             case "Time":
                 query = "SELECT * FROM TimeDate";
+                break;
+            case "ReportData":
+                query = "SELECT * FROM ReportData";
                 break;
             default:
                 query = "SELECT * FROM Dummy";

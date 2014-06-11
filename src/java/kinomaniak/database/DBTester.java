@@ -6,6 +6,7 @@
 
 package kinomaniak.database;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import kinomaniak.beans.*;
 
@@ -46,7 +47,18 @@ public class DBTester {
         m.setGenre("Fantasy");
         m.setDesc("Hello World!");
         m.setRating("Adult");
-        connector.save(m);
+//        connector.save(m);
+        
+        ReportData rd = new ReportData();
+        rd.setObjectId(1);
+        rd.setType(2);
+        rd.setTimestamp(new java.sql.Timestamp((new java.util.Date()).getTime()));
+        rd.setUserId(1);
+//        connector.save(rd);
+        for(ReportData r: (ArrayList<ReportData>)connector.parser.load(connector.getConnection(), "ReportData")){
+            
+        }
+        
         
     }
 }
