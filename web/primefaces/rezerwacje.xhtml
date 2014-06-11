@@ -48,8 +48,11 @@
                             <p:column headerText="Film" >
                                 <h:outputText value="#{sprawdzaczTytulow.sprawdzTytul(res.showID)}"/>
                             </p:column>
-                            <p:column headerText="Film" >
+                            <p:column headerText="Data" >
                                 <h:outputText value="#{sprawdzaczTytulow.sprawdzDate(res.showID)}"/>
+                            </p:column>
+                            <p:column headerText="Miejsca" >
+                                <h:outputText value="#{sprawdzaczTytulow.sprawdzMiejsca(res.showID)}" />
                             </p:column>
                              
                         </p:dataTable>

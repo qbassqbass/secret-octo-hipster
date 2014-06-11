@@ -6,7 +6,9 @@
 
 package kinomaniak.mprimef;
 
-import kinomaniak.beans.Movie;
+import java.util.ArrayList;
+import java.util.List;
+import kinomaniak.beans.Res;
 import kinomaniak.beans.Show;
 import kinomaniak.controllers.BeanManager;
 
@@ -14,6 +16,7 @@ import kinomaniak.controllers.BeanManager;
  *
  * @author Adam
  */
+
 public class SprawdzaczTytulow {
 
     public BeanManager getBeanManager() {
@@ -38,6 +41,14 @@ public class SprawdzaczTytulow {
             if(id == s.getID())
                 return s.getFormatted();
         return null;
+    }
+    
+    public List<Integer> sprawdzMiejsca(int id){
+        List<Integer> list = new ArrayList<Integer>();
+        for (Res r: this.getBeanManager().getRes())
+            if(id == r.getShowid())
+                for(int s[]: r.getSeats()) list.add(s[0]*10+s[1]);
+        return list;
     }
     public SprawdzaczTytulow() {
     }
