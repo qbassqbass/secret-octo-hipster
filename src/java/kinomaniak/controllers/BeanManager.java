@@ -21,7 +21,7 @@ public class BeanManager {
     ArrayList<Movie> movies = new ArrayList<Movie>();
     ArrayList<Attraction> attractions = new ArrayList<Attraction>();
     ArrayList<Product> products = new ArrayList<Product>();
-    ArrayList<Report> reports = new ArrayList<Report>();
+    ArrayList<ReportData> reports = new ArrayList<ReportData>();
     ArrayList<Res> res = new ArrayList<Res>();
     ArrayList<Show> shows = new ArrayList<Show>();
     ArrayList<Ticket> tickets = new ArrayList<Ticket>();
@@ -155,11 +155,11 @@ public class BeanManager {
 //        return arr;
 //    }
     
-    public ArrayList<Report> getReports(){
+    public ArrayList<ReportData> getReports(){
         if(this.reports.isEmpty()){
             ArrayList<Object> a;
-            for(Object obj : a = (id == -1) ? db.parser.load(db.getConnection(), "Report") : db.parser.load(db.getConnection(), "Report", id)){
-                reports.add((Report)obj);
+            for(Object obj : a = (id == -1) ? db.parser.load(db.getConnection(), "ReportData") : db.parser.load(db.getConnection(), "ReportData", id)){
+                reports.add((ReportData)obj);
             }
         }
         return reports;
