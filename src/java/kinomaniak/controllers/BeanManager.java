@@ -100,8 +100,25 @@ public class BeanManager {
         db.save(rd);
     }
     
-    public void getReservation(int id, int uid){
+    public void getReservation(List<Integer> list, int showid){
+        Res r = new Res();
+        r.setShowid(showid);
+        r.setSeat(this.parseReservationList(list));
+        r.setImienazwisko("NULL");
+        db.save(r);
+        saveReport(2, this.res.get(this.res.size()-1).getId()+1); // 2 - Res
         
+    }
+    
+    public int[][] parseReservationList(List<Integer> list){
+        int res[][] = new int[list.size()][2];
+        int i = 0;
+        for(Integer r: list){
+            res[i][0] = r/10;
+            res[i][1] = r%10;
+            i++;
+        }
+        return res;
     }
     
     public ArrayList<Movie> getMovies(){

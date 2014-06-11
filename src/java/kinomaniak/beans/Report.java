@@ -13,6 +13,7 @@ import java.util.Date;
  *
  * @author Qbass
  */
+@Deprecated
 public class Report implements Serializable{
     public static enum element{
         USERID, ATTRID

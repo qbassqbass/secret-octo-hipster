@@ -29,6 +29,9 @@ public class ArrayTest {
         for(int st[] : seats){
             System.out.println("Row: "+st[0]+" Col: "+st[1]);
         }
+        
+        int seat = 4;
+        System.out.println("Row: "+seat/10+" Col: "+seat%10);
     }
     
 }
