@@ -125,9 +125,11 @@ public class BeanManager {
 //    }
     
     public ArrayList<Product> getProducts(){
-        ArrayList<Object> a;
-        for(Object obj : a = (id == -1) ? db.parser.load(db.getConnection(), "Product") : db.parser.load(db.getConnection(), "Product", id)){
-            products.add((Product)obj);
+        if(this.products.isEmpty()){
+            ArrayList<Object> a;
+            for(Object obj : a = (id == -1) ? db.parser.load(db.getConnection(), "Product") : db.parser.load(db.getConnection(), "Product", id)){
+                products.add((Product)obj);
+            }
         }
         return products;
     }
@@ -142,9 +144,11 @@ public class BeanManager {
 //    }
     
     public ArrayList<Report> getReports(){
-        ArrayList<Object> a;
-        for(Object obj : a = (id == -1) ? db.parser.load(db.getConnection(), "Report") : db.parser.load(db.getConnection(), "Report", id)){
-            reports.add((Report)obj);
+        if(this.reports.isEmpty()){
+            ArrayList<Object> a;
+            for(Object obj : a = (id == -1) ? db.parser.load(db.getConnection(), "Report") : db.parser.load(db.getConnection(), "Report", id)){
+                reports.add((Report)obj);
+            }
         }
         return reports;
     }
@@ -159,7 +163,7 @@ public class BeanManager {
 //    }
     
     public ArrayList<Res> getRes(){
-        if(this.res == null){
+        if(this.res.isEmpty()){
         ArrayList<Object> a;
             for(Object obj : a = (id == -1) ? db.parser.load(db.getConnection(), "Res") : db.parser.load(db.getConnection(), "Res", id)){
                 res.add((Res)obj);
