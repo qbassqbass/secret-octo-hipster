@@ -7,10 +7,7 @@
 package kinomaniak.controllers;
 
 import java.util.ArrayList;
-import javax.inject.Named;
-import javax.enterprise.context.Dependent;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
+import java.util.List;
 import kinomaniak.beans.*;
 import kinomaniak.database.DBConnector;
 
@@ -162,11 +159,21 @@ public class BeanManager {
 //    }
     
     public ArrayList<Res> getRes(){
+        if(this.res == null){
         ArrayList<Object> a;
-        for(Object obj : a = (id == -1) ? db.parser.load(db.getConnection(), "Res") : db.parser.load(db.getConnection(), "Res", id)){
-            res.add((Res)obj);
+            for(Object obj : a = (id == -1) ? db.parser.load(db.getConnection(), "Res") : db.parser.load(db.getConnection(), "Res", id)){
+                res.add((Res)obj);
+            }
         }
         return res;
+    }
+    
+    public List<Integer> getResSeats(){
+        List<Integer> list = new ArrayList<Integer>();
+        for (Res r: this.getRes())
+            if(id == r.getShowid())
+                for(int s[]: r.getSeats()) list.add(s[0]*10+s[1]);
+        return list;
     }
     
 //    public ArrayList<Res> getRes(int id){
