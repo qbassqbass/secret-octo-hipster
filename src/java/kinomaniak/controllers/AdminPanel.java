@@ -55,7 +55,44 @@ public class AdminPanel {
         beanManager.getDb().save(a);
     }
     
-    public void addMovie(String title, String genre, String rating, String desc){
+    private String title;
+    private String genre;
+    private String rating;
+    private String desc;
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public String getRating() {
+        return rating;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+    
+    public void addMovie(){
         Movie m = new Movie();
         m.setName(title);
         m.setGenre(genre);
@@ -64,7 +101,26 @@ public class AdminPanel {
         beanManager.getDb().save(m);
     }
     
-    public void addProduct(String name, int type, float price, int count){
+    private int type;
+    private int count;
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+    
+    public void addProduct(){
         Product p = new Product();
         p.setCount(count);
         p.setType(type);
@@ -87,7 +143,35 @@ public class AdminPanel {
             }
     }
     
-    public void addUser(String user, String password, int utype){
+    private String user;
+    private String password;
+    private int utype;
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public int getUtype() {
+        return utype;
+    }
+
+    public void setUtype(int utype) {
+        this.utype = utype;
+    }
+    
+    public void addUser(){
         User u = new User();
         u.setName(user);
         u.setPassword(password);
