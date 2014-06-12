@@ -13,6 +13,44 @@ import org.jdom2.Element;
  */
 public class Time implements Serializable{
 
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 79 * hash + this.hour;
+        hash = 79 * hash + this.minute;
+        hash = 79 * hash + this.day;
+        hash = 79 * hash + this.month;
+        hash = 79 * hash + this.year;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Time other = (Time) obj;
+        if (this.hour != other.hour) {
+            return false;
+        }
+        if (this.minute != other.minute) {
+            return false;
+        }
+        if (this.day != other.day) {
+            return false;
+        }
+        if (this.month != other.month) {
+            return false;
+        }
+        if (this.year != other.year) {
+            return false;
+        }
+        return true;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
