@@ -6,6 +6,7 @@
 
 package kinomaniak.controllers;
 
+import java.util.ArrayList;
 import kinomaniak.beans.*;
 
 /**
@@ -129,15 +130,34 @@ public class AdminPanel {
         beanManager.getDb().save(p);
     }
     
-    public void addShow(int movid, int roomid){
+    private ArrayList<String> movieIds;
+    private ArrayList<String> roomIds;
+
+    public ArrayList<String> getMovieIds() {
+        return movieIds;
+    }
+
+    public void setMovieIds(ArrayList<String> movieIds) {
+        this.movieIds = movieIds;
+    }
+
+    public ArrayList<String> getRoomIds() {
+        return roomIds;
+    }
+
+    public void setRoomIds(ArrayList<String> roomIds) {
+        this.roomIds = roomIds;
+    }
+    
+    public void addShow(){
         Show s = new Show();
         for(Movie m: beanManager.movies)
-            if(m.getId() == movid){ 
+            if(m.getId() == Integer.valueOf(getMovieIds().get(0))){ 
                 s.setMov(m);
                 break;
             }
         for(CRoom cr: beanManager.rooms)
-            if(cr.getId() == roomid){
+            if(cr.getId() == Integer.valueOf(getRoomIds().get(0))){
                 s.setRoom(cr);
                 break;
             }
@@ -178,5 +198,16 @@ public class AdminPanel {
         u.setUtype(utype);
         beanManager.getDb().save(u);
     }
+    
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     
 }
