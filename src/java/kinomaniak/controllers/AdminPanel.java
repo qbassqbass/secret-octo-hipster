@@ -218,23 +218,91 @@ public class AdminPanel {
         this.id = id;
     }
     
-    
+    private ArrayList<String> users = new ArrayList<String>();
+
+    public ArrayList<String> getUsers() {
+        if(users.isEmpty())
+            for(User u: beanManager.getUsers())
+                users.add(""+u.getId()+"."+u.getName());
+            
+        return users;
+    }
+
+    public void setUsers(ArrayList<String> users) {
+        this.users = users;
+    }    
     
     public void deleteUser(){
         beanManager.getDb().delete("User", id);
     }
     
+    
+    
+    private ArrayList<String> products = new ArrayList<String>();
+
+    public ArrayList<String> getProducts() {
+        if(products.isEmpty())
+            for(Product p: beanManager.getProducts())
+                products.add(""+p.getId()+"."+p.getName());
+        return products;
+    }
+
+    public void setProducts(ArrayList<String> products) {
+        this.products = products;
+    }
+        
     public void deleteProduct(){
         beanManager.getDb().delete("Product", id);        
     }
     
+    private ArrayList<String> movies = new ArrayList<String>();
+
+    public ArrayList<String> getMovies() {
+        if(movies.isEmpty())
+            for(Movie m: beanManager.getMovies())
+                movies.add(""+m.getId()+"."+m.getName());
+        return movies;
+    }
+
+    public void setMovies(ArrayList<String> movies) {
+        this.movies = movies;
+    }
+    
+    
     public void deleteMovie(){
-        System.out.println(this.getMovieIds());
+        System.out.println(this.getMovies());
         beanManager.getDb().delete("Movie", id);        
     }
     
+    private ArrayList<String> shows = new ArrayList<String>();
+
+    public ArrayList<String> getShows() {
+        if(shows.isEmpty())
+            for(Show s: beanManager.getShows())
+                shows.add(""+s.getID()+'.'+s.getMovie().getName()+"("+s.getFormatted()+")");
+        return shows;
+    }
+
+    public void setShows(ArrayList<String> shows) {
+        this.shows = shows;
+    }
+    
+    
     public void deleteShow(){
         beanManager.getDb().delete("Show", id);        
+    }
+    
+    private ArrayList<String> attractions = new ArrayList<String>();
+
+    public ArrayList<String> getAttractions() {
+        if(attractions.isEmpty())
+            for(Attraction a: beanManager.getAttractions())
+                attractions.add(""+a.getId()+"."+a.getName());
+        return attractions;
+    }
+
+    public void setAttractions(ArrayList<String> attractions) {
+        this.attractions = attractions;
     }
     
     public void deleteAttration(){
