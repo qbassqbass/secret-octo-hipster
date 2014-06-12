@@ -29,7 +29,26 @@ public class AdminPanel {
     public AdminPanel() {
     }
     
-    public void addAttraction(String name, float price){
+    private String name;
+    private float price;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+    
+    public void addAttraction(){
         Attraction a = new Attraction();
         a.setName(name);
         a.setPrice(price);
@@ -52,6 +71,28 @@ public class AdminPanel {
         p.setName(name);
         p.setPrice(price);
         beanManager.getDb().save(p);
+    }
+    
+    public void addShow(int movid, int roomid){
+        Show s = new Show();
+        for(Movie m: beanManager.movies)
+            if(m.getId() == movid){ 
+                s.setMov(m);
+                break;
+            }
+        for(CRoom cr: beanManager.rooms)
+            if(cr.getId() == roomid){
+                s.setRoom(cr);
+                break;
+            }
+    }
+    
+    public void addUser(String user, String password, int utype){
+        User u = new User();
+        u.setName(user);
+        u.setPassword(password);
+        u.setUtype(utype);
+        beanManager.getDb().save(u);
     }
     
 }
