@@ -68,7 +68,7 @@
                     <h:form id="formatka2" style="text-align: center" >
                     <h:panelGrid columns="2" style="text-align: center">
                         <p:outputLabel value="Wybierz film do usunięcia:" />
-                        <p:selectOneMenu id="typ" value="#{adminPanel.movies}"> 
+                        <p:selectOneMenu id="typ" value="#{adminPanel.movie}"> 
                             <f:selectItems value="#{adminPanel.movies}" />
                         </p:selectOneMenu>
                         <p:commandButton value="Zatwierdź" action="#{adminPanel.deleteMovie()}"/>

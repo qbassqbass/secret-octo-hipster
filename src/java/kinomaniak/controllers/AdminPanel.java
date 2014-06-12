@@ -7,6 +7,7 @@
 package kinomaniak.controllers;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import kinomaniak.beans.*;
 
 /**
@@ -223,7 +224,7 @@ public class AdminPanel {
     public ArrayList<String> getUsers() {
         if(users.isEmpty())
             for(User u: beanManager.getUsers())
-                users.add(""+u.getId()+"."+u.getName());
+                users.add(""+u.getId()+" : "+u.getName());
             
         return users;
     }
@@ -233,7 +234,7 @@ public class AdminPanel {
     }    
     
     public void deleteUser(){
-        int id = Integer.parseInt(this.getUsers().get(0).split(".")[0]);
+        int id = Integer.parseInt(this.getUsers().get(0).split(":")[0]);
         beanManager.getDb().delete("User", id);
     }
     
@@ -244,7 +245,7 @@ public class AdminPanel {
     public ArrayList<String> getProducts() {
         if(products.isEmpty())
             for(Product p: beanManager.getProducts())
-                products.add(""+p.getId()+"."+p.getName());
+                products.add(""+p.getId()+" : "+p.getName());
         return products;
     }
 
@@ -253,16 +254,25 @@ public class AdminPanel {
     }
         
     public void deleteProduct(){
-        int id = Integer.parseInt(this.getProducts().get(0).split(".")[0]);
+        int id = Integer.parseInt(this.getProducts().get(0).split(":")[0]);
         beanManager.getDb().delete("Product", id);        
     }
     
     private ArrayList<String> movies = new ArrayList<String>();
+    private String movie;
 
+    public String getMovie() {
+        return movie;
+    }
+
+    public void setMovie(String movie) {
+        this.movie = movie;
+    }
+    
     public ArrayList<String> getMovies() {
         if(movies.isEmpty())
             for(Movie m: beanManager.getMovies())
-                movies.add(""+m.getId()+"."+m.getName());
+                movies.add(""+m.getId()+": "+m.getName());
         return movies;
     }
 
@@ -272,8 +282,9 @@ public class AdminPanel {
     
     
     public void deleteMovie(){
-        System.out.println(this.getMovies());
-        int id = Integer.parseInt(this.getMovies().get(0).split(".")[0]);
+        System.out.println(Arrays.toString(this.getMovie().split(":")));
+        int id = Integer.parseInt(this.getMovie().split(":")[0]);
+        System.out.println("MOVIEID:"+id);
         beanManager.getDb().delete("Movie", id);        
     }
     
@@ -282,7 +293,7 @@ public class AdminPanel {
     public ArrayList<String> getShows() {
         if(shows.isEmpty())
             for(Show s: beanManager.getShows())
-                shows.add(""+s.getID()+'.'+s.getMovie().getName()+"("+s.getFormatted()+")");
+                shows.add(""+s.getID()+" : "+s.getMovie().getName()+"("+s.getFormatted()+")");
         return shows;
     }
 
@@ -292,7 +303,7 @@ public class AdminPanel {
     
     
     public void deleteShow(){        
-        int id = Integer.parseInt(this.getShows().get(0).split(".")[0]);
+        int id = Integer.parseInt(this.getShows().get(0).split(":")[0]);
         beanManager.getDb().delete("Show", id);        
     }
     
@@ -301,7 +312,7 @@ public class AdminPanel {
     public ArrayList<String> getAttractions() {
         if(attractions.isEmpty())
             for(Attraction a: beanManager.getAttractions())
-                attractions.add(""+a.getId()+"."+a.getName());
+                attractions.add(""+a.getId()+" : "+a.getName());
         return attractions;
     }
 
@@ -310,7 +321,7 @@ public class AdminPanel {
     }
     
     public void deleteAttration(){
-        int id = Integer.parseInt(this.getAttractions().get(0).split(".")[0]);
+        int id = Integer.parseInt(this.getAttractions().get(0).split(":")[0]);
         beanManager.getDb().delete("Attraction", id);        
     }
     
