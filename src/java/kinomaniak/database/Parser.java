@@ -250,44 +250,46 @@ public class Parser {
         String query = "";
         switch(type){
             case "Movie":
-                query = "DELETE FROM Movie WHERE id='"+id+"'";
+                query = "DELETE FROM Movie";
                 break;
             case "CRoom":
-                query = "SELECT * FROM CRoom";
+                query = "DELETE FROM CRoom";
                 break;
             case "Attraction":
-                query = "SELECT * FROM Attraction";
+                query = "DELETE FROM Attraction";
                 break;
             case "GoldCard":
-                query = "SELECT * FROM Goldcard";
+                query = "DELETE FROM Goldcard";
                 break;
             case "Product":
-                query = "SELECT * FROM Product";
+                query = "DELETE FROM Product";
                 break;
             case "Report":
-                query = "SELECT * FROM Report";
+                query = "DELETE FROM Report";
                 break;
             case "Res":
-                query = "SELECT * FROM Res";
+                query = "DELETE FROM Res";
                 break;
             case "Show":
-                query = "SELECT * FROM Shows";
+                query = "DELETE FROM Shows";
                 break;
             case "Ticket":
-                query = "SELECT * FROM Ticket";
+                query = "DELETE FROM Ticket";
                 break;
             case "User":
-                query = "SELECT * FROM Users";
+                query = "DELETE FROM Users";
                 break;
             case "Time":
-                query = "SELECT * FROM TimeDate";
+                query = "DELETE FROM TimeDate";
                 break;
             case "ReportData":
-                query = "SELECT * FROM ReportData";
+//                query = "DELETE FROM ReportData"; 
+                // READ-ONLY
                 break;
             default:
-                query = "SELECT * FROM Dummy";
+                query = "DELETE FROM Dummy";
         }
+        query += " WHERE id='"+id+"'";
         return query;
     }
     
@@ -304,7 +306,7 @@ public class Parser {
             query = "INSERT INTO Attraction VALUES (NULL, '" + at.getName() + "', '" + at.getPrice() + "');";
         }else if(obj instanceof Product){
             Product pr = (Product) obj;
-            query = "INSERT INTO Product VALUES (NULL, '" + pr.getName() + "', '" + pr.getType() + "', '" + pr.getPrice() + "', '" + pr.getCount() + ");";
+            query = "INSERT INTO Product VALUES (NULL, '" + pr.getName() + "', '" + pr.getType() + "', '" + pr.getPrice() + "', '" + pr.getCount() + "');";
         }else if(obj instanceof Report){
             Report rep = (Report) obj;
             

@@ -84,6 +84,6 @@ public class DBConnector {
     }
     
     public void delete(String type, int id){
-        
+        this.parser.delete(type, id);
     }
 }
