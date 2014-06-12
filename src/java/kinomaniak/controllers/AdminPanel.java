@@ -233,6 +233,7 @@ public class AdminPanel {
     }    
     
     public void deleteUser(){
+        int id = Integer.parseInt(this.getUsers().get(0).split(".")[0]);
         beanManager.getDb().delete("User", id);
     }
     
@@ -252,6 +253,7 @@ public class AdminPanel {
     }
         
     public void deleteProduct(){
+        int id = Integer.parseInt(this.getProducts().get(0).split(".")[0]);
         beanManager.getDb().delete("Product", id);        
     }
     
@@ -271,6 +273,7 @@ public class AdminPanel {
     
     public void deleteMovie(){
         System.out.println(this.getMovies());
+        int id = Integer.parseInt(this.getMovies().get(0).split(".")[0]);
         beanManager.getDb().delete("Movie", id);        
     }
     
@@ -288,7 +291,8 @@ public class AdminPanel {
     }
     
     
-    public void deleteShow(){
+    public void deleteShow(){        
+        int id = Integer.parseInt(this.getShows().get(0).split(".")[0]);
         beanManager.getDb().delete("Show", id);        
     }
     
@@ -306,6 +310,7 @@ public class AdminPanel {
     }
     
     public void deleteAttration(){
+        int id = Integer.parseInt(this.getAttractions().get(0).split(".")[0]);
         beanManager.getDb().delete("Attraction", id);        
     }
     
