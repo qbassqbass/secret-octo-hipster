@@ -156,7 +156,7 @@ public class AdminPanel {
     public ArrayList<String> getMovieIds() {
         if(movieIds.isEmpty()){
             for(Movie mov: beanManager.getMovies())
-                movieIds.add(""+mov.getId()+"."+mov.getName());
+                movieIds.add(""+mov.getId()+": "+mov.getName());
         }
         return movieIds;
     }
@@ -191,7 +191,7 @@ public class AdminPanel {
     public void addShow(){
         Show s = new Show();
         for(Movie m: beanManager.getMovies())
-            if(m.getId() == Integer.valueOf(getMovieId())){ 
+            if(m.getId() == Integer.valueOf(getMovieId().split(":")[0])){ 
                 s.setMov(m);
                 break;
             }
