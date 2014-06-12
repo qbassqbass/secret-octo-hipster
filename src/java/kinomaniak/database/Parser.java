@@ -51,6 +51,8 @@ public class Parser {
         ResultSet result;
         try {
             Statement statement = conn.createStatement();
+//            if(type.equals("DailyReport"))
+//                result = statement.executeQuery(this.loadDailyReport(null))
             if(id==-1)
                 result = statement.executeQuery(this.load(type));
             else
@@ -363,7 +365,9 @@ public class Parser {
     }
     
     public ArrayList<Object> loadDailyReport(Connection conn, Date dt){
-        
+        ArrayList<Object> arr = new ArrayList<Object>
+                
+        return arr;
     }
     
     public String loadDailyReport(Date dt){
