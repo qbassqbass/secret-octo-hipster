@@ -246,6 +246,16 @@ public class Parser {
         return query;
     }
     
+    public void delete(Connection conn, String type, int id){
+        try {
+            Statement statement = conn.createStatement();
+//            ResultSet result;
+            statement.executeUpdate(this.delete(type, id));
+        } catch (SQLException ex) {
+            Logger.getLogger(Parser.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public String delete(String type, int id){
         String query = "";
         switch(type){

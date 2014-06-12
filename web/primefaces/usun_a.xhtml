@@ -71,7 +71,7 @@
                         <p:selectOneMenu id="typ" value="#{widokSala.selectedOption}"> 
                             <f:selectItems value="#{widokSala.selectedOption}" />
                         </p:selectOneMenu>
-                        <p:commandButton value="Zatwierdź" action="#"/>
+                        <p:commandButton value="Zatwierdź" action="#{adminPanel.deleteAttration()}"/>
                     </h:panelGrid>
                     </h:form>
                 </p:layoutUnit>

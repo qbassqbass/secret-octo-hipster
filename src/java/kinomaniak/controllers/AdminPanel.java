@@ -130,18 +130,27 @@ public class AdminPanel {
         beanManager.getDb().save(p);
     }
     
-    private ArrayList<String> movieIds;
-    private ArrayList<String> roomIds;
+    private ArrayList<String> movieIds = new ArrayList<String>();
+    private ArrayList<String> roomIds = new ArrayList<String>();
 
     public ArrayList<String> getMovieIds() {
+        if(movieIds.isEmpty()){
+            for(Movie mov: beanManager.getMovies())
+                movieIds.add(""+mov.getId()+"."+mov.getName());
+        }
         return movieIds;
     }
 
     public void setMovieIds(ArrayList<String> movieIds) {
+        System.out.println(movieIds);
         this.movieIds = movieIds;
     }
 
     public ArrayList<String> getRoomIds() {
+        if(roomIds.isEmpty()){
+            for(CRoom cr: beanManager.getRooms())
+                roomIds.add(String.valueOf(cr.getId()));
+        }
         return roomIds;
     }
 
@@ -209,6 +218,8 @@ public class AdminPanel {
         this.id = id;
     }
     
+    
+    
     public void deleteUser(){
         beanManager.getDb().delete("User", id);
     }
@@ -218,6 +229,7 @@ public class AdminPanel {
     }
     
     public void deleteMovie(){
+        System.out.println(this.getMovieIds());
         beanManager.getDb().delete("Movie", id);        
     }
     
