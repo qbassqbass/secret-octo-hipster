@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import kinomaniak.beans.*;
@@ -113,17 +114,24 @@ public class Parser {
                     break;
                 case "Show":
                     while(result.next()){
-                        ArrayList<Object> movies;
-                        ArrayList<Object> rooms;
-                        ArrayList<Object> times;
+//                        ArrayList<Object> movies;
+//                        ArrayList<Object> rooms;
+//                        ArrayList<Object> times;
                         int showid = result.getInt("id");
                         int movid = result.getInt("mov");
                         int roomid = result.getInt("room");
-                        int timeid = result.getInt("timeid");
-                        movies = this.load(conn, "Movie", movid);
-                        rooms = this.load(conn, "CRoom", roomid);
-                        times = this.load(conn, "Time", timeid);
-                        obj = new Show(showid, (Movie)movies.get(0), (CRoom)rooms.get(0), (Time)times.get(0));
+//                        int timeid = result.getInt("timeid");
+                        Date timeid = result.getDate("timeid");
+//                        movies = this.load(conn, "Movie", movid);
+//                        rooms = this.load(conn, "CRoom", roomid);
+//                        times = this.load(conn, "Time", timeid);
+                        Show s = new Show();
+                        s.setID(showid);
+                        s.setMovid(movid);
+                        s.setRoomid(roomid);
+                        s.setDate(timeid);
+                        obj = s;
+                        
                         arr.add(obj);
 //                        int i = 0;
 //                        for(Object m : movies){
@@ -326,7 +334,9 @@ public class Parser {
             query = "INSERT INTO Res VALUES (NULL, '" + res.getName() + "', '" + res.getShowID() + "', '" + res.formatSeatsSQL()+ "', '" + res.ischecked() + "', '" + res.isok() + "');";
         }else if(obj instanceof Show){
             Show sh = (Show) obj;
-            query = "INSERT INTO Show VALUES (NULL, '" + sh.getID() + "', '" + sh.getMovie().getId() + "', '" + sh.getRoom().getID() + "', '" + sh.getFormatted() + "');";
+//            query = "INSERT INTO Show VALUES (NULL, '" + sh.getID() + "', '" + sh.getMovie().getId() + "', '" + sh.getRoom().getID() + "', '" + sh.getFormatted() + "');";
+            query = "INSERT INTO Shows VALUES (NULL, '" + sh.getMovid() + "', '" + sh.getRoomid() + "', '" + sh.getDate() + "');";
+        
         }else if(obj instanceof Ticket){
             Ticket tick = (Ticket) obj;
             
@@ -349,6 +359,18 @@ public class Parser {
     public String load(String type, int id){
         String query = "";
         query = load(type)+" WHERE id="+id;
+        return query;
+    }
+    
+    public ArrayList<Object> loadDailyReport(Connection conn, Date dt){
+        
+    }
+    
+    public String loadDailyReport(Date dt){
+        String query = "";
+        query = load("ReportData");
+        //new java.sql.Timestamp((new java.util.Date()).getTime())
+        query += " WHERE DATE(timestamp) = DATE("+new java.sql.Timestamp(dt.getTime())+")";
         return query;
     }
     
@@ -390,7 +412,10 @@ public class Parser {
                 query = "SELECT * FROM TimeDate";
                 break;
             case "ReportData":
-                query = "SELECT * FROM ReportData";
+                query = "SELECT * FROM ReportData ORDER BY timestamp DESC";
+                break;
+            case "SellReport":
+                query = "SELECT * FROM ReportData, Users";
                 break;
             default:
                 query = "SELECT * FROM Dummy";

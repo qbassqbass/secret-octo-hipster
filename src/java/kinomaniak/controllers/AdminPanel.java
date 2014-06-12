@@ -190,6 +190,7 @@ public class AdminPanel {
     
     public void addShow(){
         Show s = new Show();
+        s.setMovid(Integer.valueOf(getMovieId().split(":")[0]));
         for(Movie m: beanManager.getMovies())
             if(m.getId() == Integer.valueOf(getMovieId().split(":")[0])){ 
                 s.setMov(m);

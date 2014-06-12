@@ -20,7 +20,7 @@ import kinomaniak.beans.*;
  * @author Qbass
  */
 public class DBConnector {
-    private final static String DBURL = "jdbc:mysql://78.88.231.172:3306/test?characterEncoding=utf8";
+    private final static String DBURL = "jdbc:mysql://78.88.231.172:3306/test2?characterEncoding=utf8";
     private final static String DBUSER = "root";
     private final static String DBPASS = "windowsshit";
     private final static String DBDRIVER = "com.mysql.jdbc.Driver";

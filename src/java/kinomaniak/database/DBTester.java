@@ -38,10 +38,10 @@ public class DBTester {
         System.out.println(connector.parser.update(movs.get(0)));
 //        connector.update(movs.get(0));
         System.out.println(((Time)times.get(0)).getHour());
-        Product pr = (Product)connector.parser.load(connector.getConnection(), "Product", 2).get(0);
-        pr.setCount(pr.getCount()-1);
-        System.out.println(pr.getCount());
-        System.out.println(connector.parser.update(pr));
+//        Product pr = (Product)connector.parser.load(connector.getConnection(), "Product", 2).get(0);
+//        pr.setCount(pr.getCount()-1);
+//        System.out.println(pr.getCount());
+//        System.out.println(connector.parser.update(pr));
         Movie m = new Movie();
         m.setName("LOTR");
         m.setGenre("Fantasy");
@@ -54,13 +54,25 @@ public class DBTester {
         rd.setType(2);
         rd.setTimestamp(new java.sql.Timestamp((new java.util.Date()).getTime()));
         rd.setUserId(1);
+        
+        System.out.println(connector.parser.save(rd));
 //        connector.save(rd);
         for(Object r: connector.parser.load(connector.getConnection(), "ReportData")){
             ReportData rx = (ReportData)r;
             System.out.println(rx);
         }
-        
-        connector.delete("Movie", 2);
+        Show sh = new Show();
+        sh.setDate(new java.sql.Timestamp((new java.util.Date()).getTime()));
+        sh.setMovid(1);
+        sh.setRoomid(1);
+        System.out.println(connector.parser.save(sh));
+//        connector.save(sh);
+//        connector.delete("Movie", 2);
+        System.out.println(connector.parser.load("Show", 5));
+        Show s = (Show)connector.load("Show", 5).get(0);
+        System.out.println(s.getMovid());
+        System.out.println(s.getRoomid());
+        System.out.println(s.getDate().toString());
         
         
     }

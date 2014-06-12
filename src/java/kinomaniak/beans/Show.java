@@ -5,6 +5,7 @@
 package kinomaniak.beans;
 
 import java.io.Serializable;
+import java.util.Date;
 import org.jdom2.Element;
 
 /**
@@ -15,6 +16,32 @@ public class Show implements Serializable {
     private static final long serialVersionUID = 2L;
     
     private int showid;
+    private Date date;
+    private int movid, roomid;
+
+    public int getMovid() {
+        return movid;
+    }
+
+    public void setMovid(int movid) {
+        this.movid = movid;
+    }
+
+    public int getRoomid() {
+        return roomid;
+    }
+
+    public void setRoomid(int roomid) {
+        this.roomid = roomid;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
     public void setShowid(int showid) {
         this.showid = showid;
@@ -104,7 +131,7 @@ public class Show implements Serializable {
      * Metoda zwracająca datę rozpoczęcia seansu
      * @return tablica daty, gdzie int[0] - dzień, int[1] - miesiąc, int[2] - rok
      */
-    public int[] getDate(){
+    public int[] getDatex(){
         int dt[] = new int[3];
         dt[0] = this.time.getDay();
         dt[1] = this.time.getMonth();
@@ -116,7 +143,7 @@ public class Show implements Serializable {
      * @return String ze sformatowaną datą w postaci dzień/miesiąc/rok
      */
     public String getFormattedDate(){
-        String tmp = this.getDate()[0]+"/"+this.getDate()[1]+"/"+this.getDate()[2];
+        String tmp = this.getDatex()[0]+"/"+this.getDatex()[1]+"/"+this.getDatex()[2];
         return tmp;
     }
     /**
