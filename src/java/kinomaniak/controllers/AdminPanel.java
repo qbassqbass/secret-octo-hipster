@@ -134,6 +134,24 @@ public class AdminPanel {
     
     private ArrayList<String> movieIds = new ArrayList<String>();
     private ArrayList<String> roomIds = new ArrayList<String>();
+    private String roomId;
+    private String movieId;
+
+    public String getMovieId() {
+        return movieId;
+    }
+
+    public void setMovieId(String movieId) {
+        this.movieId = movieId;
+    }
+
+    public String getRoomId() {
+        return roomId;
+    }
+
+    public void setRoomId(String roomId) {
+        this.roomId = roomId;
+    }
 
     public ArrayList<String> getMovieIds() {
         if(movieIds.isEmpty()){
@@ -173,12 +191,12 @@ public class AdminPanel {
     public void addShow(){
         Show s = new Show();
         for(Movie m: beanManager.getMovies())
-            if(m.getId() == Integer.valueOf(getMovieIds().get(0))){ 
+            if(m.getId() == Integer.valueOf(getMovieId())){ 
                 s.setMov(m);
                 break;
             }
         for(CRoom cr: beanManager.getRooms())
-            if(cr.getId() == Integer.valueOf(getRoomIds().get(0))){
+            if(cr.getId() == Integer.valueOf(getRoomId())){
                 s.setRoom(cr);
                 break;
             }
