@@ -8,6 +8,7 @@ package kinomaniak.controllers;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import kinomaniak.beans.*;
 
 /**
@@ -159,18 +160,40 @@ public class AdminPanel {
         this.roomIds = roomIds;
     }
     
+    private Date date;
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+    
     public void addShow(){
         Show s = new Show();
-        for(Movie m: beanManager.movies)
+        for(Movie m: beanManager.getMovies())
             if(m.getId() == Integer.valueOf(getMovieIds().get(0))){ 
                 s.setMov(m);
                 break;
             }
-        for(CRoom cr: beanManager.rooms)
+        for(CRoom cr: beanManager.getRooms())
             if(cr.getId() == Integer.valueOf(getRoomIds().get(0))){
                 s.setRoom(cr);
                 break;
             }
+        Time tm = new Time(getDate().getHours(), getDate().getMinutes(), getDate().getDay(),
+                getDate().getMonth(), getDate().getYear());
+        beanManager.getDb().save(tm);
+        int timeId;
+        ArrayList<Object> obj = beanManager.getDb().parser.load(beanManager.getDb().getConnection(), "Time");
+        for(Object o: obj){
+            if(o instanceof Time){
+                Time t = (Time)o;
+                if(t.equals(tm)) s.setTime(t);
+            }
+        }
+        beanManager.getDb().save(s);
     }
     
     private String user;
@@ -358,6 +381,7 @@ public class AdminPanel {
     
     public void deleteAttration(){
         int id = Integer.parseInt(this.getAttraction().split(":")[0]);
+        System.out.println("ATTRID:"+id);
         beanManager.getDb().delete("Attraction", id);        
     }
     
