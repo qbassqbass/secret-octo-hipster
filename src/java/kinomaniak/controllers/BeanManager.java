@@ -29,6 +29,10 @@ public class BeanManager {
     public void setUser(User user) {
         this.user = user;
     }
+
+    public DBConnector getDb() {
+        return db;
+    }
     ArrayList<Movie> movies = new ArrayList<Movie>();
     ArrayList<Attraction> attractions = new ArrayList<Attraction>();
     ArrayList<Product> products = new ArrayList<Product>();

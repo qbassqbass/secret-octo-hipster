@@ -59,6 +59,13 @@
             <value>#{beanManager}</value>
         </managed-property>
     </managed-bean>
- 
-    
+    <managed-bean>
+        <managed-bean-name>adminPanel</managed-bean-name>
+        <managed-bean-class>kinomaniak.controllers.AdminPanel</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property> 
+            <property-name>beanManager</property-name>
+            <value>#{beanManager}</value>
+        </managed-property>
+    </managed-bean>
 </faces-config>
