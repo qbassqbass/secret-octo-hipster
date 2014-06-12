@@ -82,4 +82,8 @@ public class DBConnector {
     public ArrayList<Object> load(String type, int id){
         return this.parser.load(this.connection, type, id);
     }
+    
+    public void delete(String type, int id){
+        
+    }
 }

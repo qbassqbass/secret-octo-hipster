@@ -246,6 +246,51 @@ public class Parser {
         return query;
     }
     
+    public String delete(String type, int id){
+        String query = "";
+        switch(type){
+            case "Movie":
+                query = "DELETE FROM Movie WHERE id='"+id+"'";
+                break;
+            case "CRoom":
+                query = "SELECT * FROM CRoom";
+                break;
+            case "Attraction":
+                query = "SELECT * FROM Attraction";
+                break;
+            case "GoldCard":
+                query = "SELECT * FROM Goldcard";
+                break;
+            case "Product":
+                query = "SELECT * FROM Product";
+                break;
+            case "Report":
+                query = "SELECT * FROM Report";
+                break;
+            case "Res":
+                query = "SELECT * FROM Res";
+                break;
+            case "Show":
+                query = "SELECT * FROM Shows";
+                break;
+            case "Ticket":
+                query = "SELECT * FROM Ticket";
+                break;
+            case "User":
+                query = "SELECT * FROM Users";
+                break;
+            case "Time":
+                query = "SELECT * FROM TimeDate";
+                break;
+            case "ReportData":
+                query = "SELECT * FROM ReportData";
+                break;
+            default:
+                query = "SELECT * FROM Dummy";
+        }
+        return query;
+    }
+    
     public String save(Object obj){
         String query = "";
         if(obj instanceof Movie){
@@ -259,7 +304,7 @@ public class Parser {
             query = "INSERT INTO Attraction VALUES (NULL, '" + at.getName() + "', '" + at.getPrice() + "');";
         }else if(obj instanceof Product){
             Product pr = (Product) obj;
-            query = "INSERT INTO Product VALUES (NULL, '" + pr.getName() + "', '" + pr.getType() + "', '" + pr.getPrice() + "', '" + pr.getCount() + ",);";
+            query = "INSERT INTO Product VALUES (NULL, '" + pr.getName() + "', '" + pr.getType() + "', '" + pr.getPrice() + "', '" + pr.getCount() + ");";
         }else if(obj instanceof Report){
             Report rep = (Report) obj;
             

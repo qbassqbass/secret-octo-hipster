@@ -209,5 +209,25 @@ public class AdminPanel {
         this.id = id;
     }
     
+    public void deleteUser(){
+        beanManager.getDb().delete("User", id);
+    }
+    
+    public void deleteProduct(){
+        beanManager.getDb().delete("Product", id);        
+    }
+    
+    public void deleteMovie(){
+        beanManager.getDb().delete("Movie", id);        
+    }
+    
+    public void deleteShow(){
+        beanManager.getDb().delete("Show", id);        
+    }
+    
+    public void deleteAttration(){
+        beanManager.getDb().delete("Attraction", id);        
+    }
+    
     
 }
