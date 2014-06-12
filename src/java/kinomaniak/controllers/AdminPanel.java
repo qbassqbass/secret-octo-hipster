@@ -220,11 +220,20 @@ public class AdminPanel {
     }
     
     private ArrayList<String> users = new ArrayList<String>();
+    private String userr;
 
+    public String getUserr() {
+        return userr;
+    }
+
+    public void setUserr(String userr) {
+        this.userr = userr;
+    }
+    
     public ArrayList<String> getUsers() {
         if(users.isEmpty())
             for(User u: beanManager.getUsers())
-                users.add(""+u.getId()+" : "+u.getName());
+                users.add(""+u.getId()+": "+u.getName());
             
         return users;
     }
@@ -234,7 +243,7 @@ public class AdminPanel {
     }    
     
     public void deleteUser(){
-        int id = Integer.parseInt(this.getUsers().get(0).split(":")[0]);
+        int id = Integer.parseInt(this.getUserr().split(":")[0]);
         beanManager.getDb().delete("User", id);
     }
     
@@ -242,10 +251,19 @@ public class AdminPanel {
     
     private ArrayList<String> products = new ArrayList<String>();
 
+    public String getProduct() {
+        return product;
+    }
+
+    public void setProduct(String product) {
+        this.product = product;
+    }
+    private String product;
+    
     public ArrayList<String> getProducts() {
         if(products.isEmpty())
             for(Product p: beanManager.getProducts())
-                products.add(""+p.getId()+" : "+p.getName());
+                products.add(""+p.getId()+": "+p.getName());
         return products;
     }
 
@@ -289,11 +307,20 @@ public class AdminPanel {
     }
     
     private ArrayList<String> shows = new ArrayList<String>();
+    private String show;
+
+    public String getShow() {
+        return show;
+    }
+
+    public void setShow(String show) {
+        this.show = show;
+    }
 
     public ArrayList<String> getShows() {
         if(shows.isEmpty())
             for(Show s: beanManager.getShows())
-                shows.add(""+s.getID()+" : "+s.getMovie().getName()+"("+s.getFormatted()+")");
+                shows.add(""+s.getID()+": "+s.getMovie().getName()+"("+s.getFormatted()+")");
         return shows;
     }
 
@@ -303,16 +330,25 @@ public class AdminPanel {
     
     
     public void deleteShow(){        
-        int id = Integer.parseInt(this.getShows().get(0).split(":")[0]);
+        int id = Integer.parseInt(this.getShow().split(":")[0]);
         beanManager.getDb().delete("Show", id);        
     }
     
     private ArrayList<String> attractions = new ArrayList<String>();
+    private String attraction;
+
+    public String getAttraction() {
+        return attraction;
+    }
+
+    public void setAttraction(String attraction) {
+        this.attraction = attraction;
+    }
 
     public ArrayList<String> getAttractions() {
         if(attractions.isEmpty())
             for(Attraction a: beanManager.getAttractions())
-                attractions.add(""+a.getId()+" : "+a.getName());
+                attractions.add(""+a.getId()+": "+a.getName());
         return attractions;
     }
 
@@ -321,7 +357,7 @@ public class AdminPanel {
     }
     
     public void deleteAttration(){
-        int id = Integer.parseInt(this.getAttractions().get(0).split(":")[0]);
+        int id = Integer.parseInt(this.getAttraction().split(":")[0]);
         beanManager.getDb().delete("Attraction", id);        
     }
     

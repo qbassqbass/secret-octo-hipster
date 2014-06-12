@@ -198,6 +198,7 @@ public class Parser {
             Statement statement = conn.createStatement();
 //            ResultSet result;
             statement.executeUpdate(this.update(obj));
+            statement.close();
         } catch (SQLException ex) {
             Logger.getLogger(Parser.class.getName()).log(Level.SEVERE, null, ex);
         }

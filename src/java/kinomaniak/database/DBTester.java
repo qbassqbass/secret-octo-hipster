@@ -60,6 +60,8 @@ public class DBTester {
             System.out.println(rx);
         }
         
+        connector.delete("Movie", 2);
+        
         
     }
 }
